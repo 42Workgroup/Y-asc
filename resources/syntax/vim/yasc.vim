@@ -11,7 +11,7 @@ endif
 let b:current_syntax = "yasc"
 
 " Keywords
-syn keyword yascBasic return if else while do for struct
+syn keyword yascBasic return if else while do for struct use def
 
 " Types
 syn keyword yascTypes bool u8 ubyte u16 u32 void

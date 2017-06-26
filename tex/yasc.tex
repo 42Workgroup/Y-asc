@@ -3,10 +3,13 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{titling}
+\usepackage{listings}
 
 % Configuration
 \graphicspath{ {img/} }
 \geometry{a4paper}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=50pt}
 
 \renewcommand\partheadstartvskip{\clearpage\null\vfil}
 \renewcommand\partheadmidvskip{\par\nobreak\vskip 20pt\thispagestyle{empty}}
@@ -50,7 +53,7 @@
 \part{The Y Language}
     \section{Getting Started}
     \section{Types, Operators and Expressions}
-        \subsection{Variable names}
+        \subsection{Variable names} \label{varnames}
             Variable names are made up of letters and digits; the first character
             must be a letter. A letter is, in this context, a character inside
             the English dictionnary, through the letters \texttt{a} to \texttt{z}.
@@ -60,7 +63,139 @@
             names are reserved to namespaces.
             Keywords like \texttt{if}, \texttt{else}, \texttt{struct}, etc., are
             reserved: They cannot be used as variables names.
-        \subsection{Namespaces}
+
+            A variable name cannot be used twice in a scope: If such a thing
+            would happen, an error will be thrown. However, different variables
+            can have the same name in differents namespaces. See the \ref{namespaces}
+            section for more information.
+        \subsection{Namespaces} \label{namespaces}
+            Namespaces are used to limit scope of functions. They must be declared
+            via the keyword \texttt{def}, with brackets to delimit the scope.
+            Namespaces names are made up of letters and digits; the first character
+            must be a letter, in uppercase: Lowercase names are reserved to variables.
+
+            Example of a namespace declaration:
+            \begin{lstlisting}
+    def Namespace_name {
+        [...]
+    };
+            \end{lstlisting}
+            Functions can be declared in a namespace:
+            \begin{lstlisting}
+    def Namespace_name {
+        function_name(ubyte[] : str) : bool {
+            [...]
+            return true;
+        }
+    };
+            \end{lstlisting}
+            Any functions declared in a namespace is meant to be used with this
+            namespace. In order to use a specific namespace, one must declare it:
+            \begin{lstlisting}
+    use Namespace_name;
+            \end{lstlisting}
+            The keyword \texttt{use} used with the namespace name will allow
+            the call of all functions in this namespace. In order to use one
+            function of this namespace, one can use an accessor on the namespace name:
+            \begin{lstlisting}
+    use Namespace_name.function_name;
+            \end{lstlisting}
+            With this declaration, any other function of this namespace used in
+            code will throw an error.
+
+            With proper usage of the keyword \texttt{use}, one can use a
+            namespace's function in the following way:
+            \begin{lstlisting}
+    Namespace_name.function_name("Hello!");
+            \end{lstlisting}
+
+            Since namespaces are a limited scope, they can be two functions with
+            the same name, in two different namespaces but they must always be used
+            with a proper accessor; this way, the compiler / interpreter will
+            never be confused as what function should be called.
+            However, take the following example:
+
+            \begin{lstlisting}
+    def Namespace_one {
+        hello(void) : void {
+            print("Hello from one");
+        }
+    };
+
+    def Namespace_two {
+        use Namespace_one;
+
+        hello(void) : void {
+            print("Hello from two");
+            hello();
+        }
+    };
+            \end{lstlisting}
+            In the \texttt{Namespace\_two} function \texttt{hello}, we call a
+            function named \texttt{hello}: In this specific case, the function
+            called will be the one of the current namespace, thus resulting in
+            an infinite loop. If one must use a same named function in another
+            namespace, a proper accessor must be used:
+            \begin{lstlisting}
+    def Namespace_one {
+        hello(void) : void {
+            print("Hello from one");
+        }
+    };
+
+    def Namespace_two {
+        use Namespace_one;
+
+        hello(void) : void {
+            print("Hello from two");
+            Namespace_two.hello();
+        }
+    };
+
+            \end{lstlisting}
+            The same logic can be used for globals functions named the same as
+            namespace's function:
+            \begin{lstlisting}
+    hello(void) : void {
+        print("Hello from one");
+    }
+
+    def Namespace_two {
+        hello(void) : void {
+            print("Hello from two");
+            hello();
+        }
+    };
+            \end{lstlisting}
+            Here, in the \texttt{Namespace\_two.hello} function, the function
+            called will be itself. However, if one call the \texttt{hello} function
+            from a global scope, such as \texttt{main}, the global scope will be used:
+            \begin{lstlisting}
+    hello(void) : void {
+        print("Hello from one");
+    }
+
+    def Namespace_two {
+        hello(void) : void {
+            print("Hello from two");
+        }
+    };
+
+    use Namespace_two;
+
+    main(u32 : ac, ubyte[]* : av) : u32 {
+        hello();
+        return 0;
+    }
+            \end{lstlisting}
+    Will return:
+            \begin{lstlisting}
+    > Hello from one
+            \end{lstlisting}
+            If one must use the \texttt{Namespace\_two} \texttt{hello} function,
+            a proper accessor must be used, as shown above.
+
+
         \subsection{Data types and Sizes}
         \subsection{Constants}
         \subsection{Declarations}
