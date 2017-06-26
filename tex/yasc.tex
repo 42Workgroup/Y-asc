@@ -220,6 +220,18 @@ Name & Range & Content\\
 \hline
 \end{array}$
         \subsection{Constants}
+            One can declare a specific variable to be never changed, in any scope,
+            via the keyword \texttt{\_\_const}:
+            \begin{lstlisting}
+    ubyte __const char = 'A';
+            \end{lstlisting}
+            This \texttt{char} variable can never change value; any attempt to it
+            will throw an error.
+            Constant variables must have a initialization value, otherwise, its
+            utility is quite limited.
+
+            The \texttt{\_\_const} keyword must be always between a variable
+            type and its name.
         \subsection{Declarations}
         \subsection{Arithmetic Operators}
         \subsection{Type Conversions}
