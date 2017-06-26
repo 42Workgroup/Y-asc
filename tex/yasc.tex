@@ -51,6 +51,15 @@
     \section{Getting Started}
     \section{Types, Operators and Expressions}
         \subsection{Variable names}
+            Variable names are made up of letters and digits; the first character
+            must be a letter. A letter is, in this context, a character inside
+            the English dictionnary, through the letters \texttt{a} to \texttt{z}.
+            All other symbols from other languages / Unicode are not supported,
+            and will throw an error upon reading. The underscore \texttt{\_}
+            count as a letter. All variable must be in lowercase, as uppercase
+            names are reserved to namespaces.
+            Keywords like \texttt{if}, \texttt{else}, \texttt{struct}, etc., are
+            reserved: They cannot be used as variables names.
         \subsection{Namespaces}
         \subsection{Data types and Sizes}
         \subsection{Constants}
