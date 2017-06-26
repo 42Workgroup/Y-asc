@@ -9,7 +9,7 @@ ${NAME}:
 clean:
 	rm -f *.aux *.log *.toc
 
-fclean:
+fclean: clean
 	rm -f ${NAME}.pdf
 
 re: fclean all
