@@ -14,7 +14,7 @@ let b:current_syntax = "yasc"
 syn keyword yascBasic return if else while do for struct use def
 
 " Types
-syn keyword yascTypes bool u8 ubyte u16 u32 void
+syn keyword yascTypes bool u8 s8 ubyte u16 s16 u32 s32 void
 
 " Specials keywords
 syn keyword yascSpecials __const __static __heap

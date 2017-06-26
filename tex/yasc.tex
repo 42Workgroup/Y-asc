@@ -4,6 +4,7 @@
 \usepackage{geometry}
 \usepackage{titling}
 \usepackage{listings}
+\usepackage{amsmath}
 
 % Configuration
 \graphicspath{ {img/} }
@@ -197,6 +198,27 @@
 
 
         \subsection{Data types and Sizes}
+            One can use the following standard data types:
+
+$\begin{array}{|c|c|c|}
+\hline
+Name & Range & Content\\
+\hline
+\text{ubyte} & \text{0 - 255} & \text{One byte, can be used for an ASCII-character}\\
+\hline
+\text{u8} & \text{0 - 255} & \text{Unsigned integer on 8 bits, same as ubyte}\\
+\hline
+\text{s8} & \text{-128 - 127} & \text{Signed integer on 8 bits}\\
+\hline
+\text{u16} & \text{0 - 65,535} & \text{Unsigned integer on 16 bits}\\
+\hline
+\text{s16} & \text{-32,768 - 32,767} & \text{Signed integer on 16 bits}\\
+\hline
+\text{u32} & \text{-2,147,483,648 - 2,147,483,647} & \text{Unsigned integer on 32 bits}\\
+\hline
+\text{s32} & \text{0 - 4,294,967,295} & \text{Signed integer on 32 bits}\\
+\hline
+\end{array}$
         \subsection{Constants}
         \subsection{Declarations}
         \subsection{Arithmetic Operators}
