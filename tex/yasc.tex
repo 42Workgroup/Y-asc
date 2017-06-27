@@ -260,6 +260,35 @@ Name & Range & Content\\
             same precedence, which is lower than the precedence of \texttt{*},
             \texttt{/}, and \texttt{\%}. Arithmetic operators associate left
             to right.
+        \subsection{Relational and Logical Operators}
+            The relational operators are
+
+$\begin{array}{llll}
+> & >= & < & <=
+\end{array}$
+
+            They all have the same precedence. Just below them in precedence are
+            the equality operators:
+
+$\begin{array}{ll}
+== & !=
+\end{array}$
+
+            Relational operators have lower precedence than arithmetic operators,
+            so an expression like \texttt{i < lim - 1} is taken as \texttt{i < (lim - 1)}
+            , as would be expected.
+
+            The logical operators are
+
+$\begin{array}{ll}
+\&\& & ||
+\end{array}$
+
+            Expressions connected by \texttt{\&\&} or \texttt{||} are evaluated
+            left to right, and evaluation stops as soon as the truth or falsehood
+            of the result is known. By definition, the numeric value of a relational
+            or logical expression is 1 if the relation is true, and 0 if the relation
+            is false.
         \subsection{Type Conversions}
         \subsection{Assignement Operators and Expressions}
         \subsection{Conditionnal Expressions}
