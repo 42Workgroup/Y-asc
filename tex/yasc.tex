@@ -290,6 +290,54 @@ $\begin{array}{ll}
             or logical expression is 1 if the relation is true, and 0 if the relation
             is false.
         \subsection{Type Conversions}
+            In the Y language, there is no such thing as 'implicit type conversion':
+            All conversions must be explicit, using the standard functions.
+            Therefore, the following example is wrong:
+            \begin{lstlisting}
+                u32     i = 10;
+                u8      j;
+
+                i = j;
+            \end{lstlisting}
+            In place of that, one must use
+            \begin{lstlisting}
+                u32     i = 10;
+                u8      j;
+
+                j = u32_to_u8(i);
+            \end{lstlisting}
+            All standards type-conversions function are to be safe, with no
+            possibilty of underflow or overflow.
+
+$\begin{array}{|l|l|l|l|}
+\hline
+Name & Argument & Returns & Role\\
+\hline
+\text{u8\_to\_u16} & \text{u8} & \text{u16} & \text{Convert an unsigned integer on 8 bits to an unsigned integer on 16 bits}\\
+\hline
+\text{u8\_to\_u32} & \text{u8} & \text{u32} & \text{Convert an unsigned integer on 8 bits to an unsigned integer on 32 bits}\\
+\hline
+\text{u16\_to\_u8} & \text{u16} & \text{u8} & \text{Convert an unsigned integer on 16 bits to an unsigned integer on 8 bits}\\
+\hline
+\text{u16\_to\_u32} & \text{u16} & \text{u32} & \text{Convert an unsigned integer on 16 bits to an unsigned integer on 32 bits}\\
+\hline
+\text{u32\_to\_u8} & \text{u32} & \text{u8} & \text{Convert an unsigned integer on 32 bits to an unsigned integer on 8 bits}\\
+\hline
+\text{u32\_to\_u16} & \text{u32} & \text{u16} & \text{Convert an unsigned integer on 32 bits to an unsigned integer on 16 bits}\\
+\hline
+\text{s8\_to\_s16} & \text{s8} & \text{s16} & \text{Convert a signed integer on 8 bits to a signed integer on 16 bits}\\
+\hline
+\text{s8\_to\_s32} & \text{s8} & \text{s32} & \text{Convert a signed integer on 8 bits to a signed integer on 32 bits}\\
+\hline
+\text{s16\_to\_s8} & \text{s16} & \text{s8} & \text{Convert a signed integer on 16 bits to a signed integer on 8 bits}\\
+\hline
+\text{s16\_to\_s32} & \text{s16} & \text{s32} & \text{Convert a signed integer on 16 bits to a signed integer on 32 bits}\\
+\hline
+\text{s32\_to\_s8} & \text{s32} & \text{s8} & \text{Convert a signed integer on 32 bits to a signed integer on 8 bits}\\
+\hline
+\text{s32\_to\_s16} & \text{s32} & \text{s16} & \text{Convert a signed integer on 32 bits to a signed integer on 16 bits}\\
+\hline
+\end{array}$
         \subsection{Precedence and Order of Evaluation}
     \section{Control Flow}
         \subsection{If-Else}
