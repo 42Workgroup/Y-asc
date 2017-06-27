@@ -219,7 +219,7 @@ Name & Range & Content\\
 \text{s32} & \text{0 - 4,294,967,295} & \text{Signed integer on 32 bits}\\
 \hline
 \end{array}$
-        \subsection{Constants}
+        \subsection{Constants} \label{const}
             One can declare a specific variable to never be changed, in any scope,
             via the keyword \texttt{\_\_const}:
             \begin{lstlisting}
@@ -230,13 +230,66 @@ Name & Range & Content\\
             Constant variables must have a initialization value, otherwise, its
             utility is quite limited.
 
-            The \texttt{\_\_const} keyword must be always between a variable
+            The \texttt{\_\_const} keyword must always be between a variable
             type and its name.
         \subsection{Declarations}
+            All variables must be declared before use, although certain
+            declarations can be made implicity by content. A declaration
+            specifies a type, an optionnal flag and a name.
+            \begin{lstlisting}
+    u32                 count, j;
+    bool __const        ret = true;
+            \end{lstlisting}
+            Variables can be distributed among declarations in any fashion; the
+            list above could well be written as
+            \begin{lstlisting}
+    u32         count;
+    u32         j;
+            \end{lstlisting}
+            A variable may also be initialized in its declaration. If the name
+            is followed by an equals signs and an expression, the expression
+            serves as an initializer. Constant variables must be initialized,
+            see the \ref{const} section for more information.
+
+            The flag between the type and the name is implemented by the language,
+            and should always be in this position.
         \subsection{Arithmetic Operators}
+            The binary arithmetic operators are \texttt{+}, \texttt{-},
+            \texttt{*}, \texttt{/} and the modulus operator \texttt{\%}.
+            The binary operator \texttt{+} and \texttt{-} operators have the 
+            same precedence, which is lower than the precedence of \texttt{*},
+            \texttt{/}, and \texttt{\%}. Arithmetic operators associate left
+            to right.
+        \subsection{Relational and Logical Operators}
+            The relational operators are
+
+$\begin{array}{llll}
+> & >= & < & <=
+\end{array}$
+
+            They all have the same precedence. Just below them in precedence are
+            the equality operators:
+
+$\begin{array}{ll}
+== & !=
+\end{array}$
+
+            Relational operators have lower precedence than arithmetic operators,
+            so an expression like \texttt{i < lim - 1} is taken as \texttt{i < (lim - 1)}
+            , as would be expected.
+
+            The logical operators are
+
+$\begin{array}{ll}
+\&\& & ||
+\end{array}$
+
+            Expressions connected by \texttt{\&\&} or \texttt{||} are evaluated
+            left to right, and evaluation stops as soon as the truth or falsehood
+            of the result is known. By definition, the numeric value of a relational
+            or logical expression is 1 if the relation is true, and 0 if the relation
+            is false.
         \subsection{Type Conversions}
-        \subsection{Assignement Operators and Expressions}
-        \subsection{Conditionnal Expressions}
         \subsection{Precedence and Order of Evaluation}
     \section{Control Flow}
         \subsection{If-Else}
