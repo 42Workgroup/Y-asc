@@ -458,6 +458,29 @@ Operators & Associativity\\
         in earlier examples; here we will complete the set, and be more precise
         about the ones discussed before.
         \subsection{If-Else}
+            The \texttt{if-else} statement is used to express decisions. Formally
+            the syntax is
+            \begin{lstlisting}
+    if (expression)
+        statement1
+    else
+        statement2
+            \end{lstlisting}
+            where the else part is optional. The \texttt{expression} is evaluated;
+            if it is true (that is, if \texttt{expression} has a non-zero value),
+            \texttt{statement1} is executed. If it is false, (\texttt{expression} is zero)
+            and there is an else part, \texttt{statement2} is executed instead.
+
+            Since an \texttt{if} test the numeric value of an expression, certain
+            shortcuts are possible. The most obvious is writing
+            \begin{lstlisting}
+    if (expression)
+            \end{lstlisting}
+            instead of
+            \begin{lstlisting}
+    if (expression != 0)
+            \end{lstlisting}
+
         \subsection{Else-If}
         \subsection{Loops - While}
         \subsection{Loops - For}
