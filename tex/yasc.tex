@@ -52,6 +52,56 @@
 
 \part{Introduction}
 \part{The Y Language}
+    \section{The basics}
+        \subsection{File format}
+            All files in the Y programming language will have the \texttt{.y}
+            extension. Though this extension serve no purpose, we advise the
+            reader to stick to this rule, as is it much better for organizing files.
+        \subsection{Instructions}
+            In the Y language, one must declare an instruction with a \texttt{;}
+            at the end of it
+            \begin{lstlisting}
+    instruction;
+            \end{lstlisting}
+            One can chain instruction on the same line, regardless of line breaks
+            \begin{lstlisting}
+    instruction1; instruction2;
+            \end{lstlisting}
+            It is worth noting that the Y language does not care about line returns,
+            in whatever standards (\textbackslash n, \textbackslash r \textbackslash n, ..)
+        \subsection{Scope}
+            As many programming languages, Y use a couple of brackets \texttt{\{\}}
+            to determine scope. Scope is to be determined on special instructions,
+            like conditions, functions and namespaces.
+            \begin{lstlisting}
+    if (condition) {
+        /* If's scope */
+    }
+
+    [...]
+
+    function(ubyte[] : str) : bool {
+        /* Function's scope */
+    }
+            \end{lstlisting}
+            One can use brackets to determine an internal scope, that serve no
+            other purpose that limiting variable use
+            \begin{lstlisting}
+    {
+        u32 num = 2;
+
+        print("Num is equal to %u\n", num);
+    }
+    /* Cannot use num here */
+            \end{lstlisting}
+
+        \subsection{Comments}
+            Comments can be written in the following format
+            \begin{lstlisting}
+    /* Comment here */
+            \end{lstlisting}
+            Those are only for the developer, as it will not be compiled.
+
     \section{Types, Operators and Expressions}
         Variables and constants are the basic data objects manipulated in a
         program. Declarations list the variables to be used, and state what type
