@@ -537,6 +537,15 @@ Operators & Associativity\\
             can be ommited, or it may be used for error checking to catch an
             'impossible' condition.
         \subsection{Loops - While}
+            In
+            \begin{lstlisting}
+    while (expression)
+        statement;
+            \end{lstlisting}
+            the \texttt{expression} is evaluated. It it is non-zero, \texttt{statement}
+            is executed and \texttt{expression} is re-evaluated. This cyccle continutes
+            until \texttt{expression} becomes zero, at which point execution
+            resumes after \texttt{statement}.
         \subsection{Loops - For}
         \subsection{Loops - Do-While}
         \subsection{Break and Continue}
