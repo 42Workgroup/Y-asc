@@ -504,6 +504,38 @@ Operators & Associativity\\
             \end{lstlisting}
 
         \subsection{Else-If}
+            The construction
+            \begin{lstlisting}
+    if (expression)
+        statement;
+    else if (expression)
+        statement;
+    else if (expression)
+        statement;
+    else if (expression)
+        statement;
+    else if (expression)
+        statement;
+    else
+        statement;
+            \end{lstlisting}
+            occurs so often that is worth a brief separate discussion. This
+            sequence of \texttt{if} statements is the most general way of writing
+            a multi-way decision. The \texttt{expressions} are evaluated in order;
+            if an \texttt{expression} is true, the \texttt{statement} associated
+            with it is executed, and this terminates the whole chain. As always,
+            the code for each \texttt{statement} is either a single statement,
+            or a group of them in braces.
+
+            The last \texttt{else} part handles 'none of the above' or default
+            case where none of the other conditions is satisfied. Sometimes there
+            is no explicit action for the default; in that case the trailing
+            \begin{lstlisting}
+    else
+        statement;
+            \end{lstlisting}
+            can be ommited, or it may be used for error checking to catch an
+            'impossible' condition.
         \subsection{Loops - While}
         \subsection{Loops - For}
         \subsection{Loops - Do-While}
