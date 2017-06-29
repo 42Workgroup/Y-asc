@@ -480,6 +480,28 @@ Operators & Associativity\\
             \begin{lstlisting}
     if (expression != 0)
             \end{lstlisting}
+            Because the \texttt{else} part on an \texttt{if-else} is optionnal,
+            there is ambiguity when an else if ommited from a nested \texttt{if}
+            sequence. This is resolved by associating the \texttt{else} with
+            the closest previous \texttt{else}-less \texttt{if}. For example, in
+            \begin{lstlisting}
+    if (n > 0)
+        if (a > b)
+            z = a;
+        else
+            z = b;
+            \end{lstlisting}
+            the \texttt{else} goes to the inner \texttt{if}, as we have shown by
+            indentation. If that isn't the desired behaviore, one must use braces
+            to force the proper association:
+            \begin{lstlisting}
+    if (n > 0) {
+        if (a > b)
+            z = a;
+    }
+    else
+        z = b;
+            \end{lstlisting}
 
         \subsection{Else-If}
         \subsection{Loops - While}
