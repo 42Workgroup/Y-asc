@@ -547,8 +547,37 @@ Operators & Associativity\\
             until \texttt{expression} becomes zero, at which point execution
             resumes after \texttt{statement}.
         \subsection{Loops - For}
+            The \texttt{for} statement
+            \begin{lstlisting}
+    for (expr1; expr2; expr3)
+        statement;
+            \end{lstlisting}
+            is equivalent to
+            \begin{lstlisting}
+    expr1;
+    while (expr2) {
+        statement;
+        expr3;
+    }
+            \end{lstlisting}
+            except for the behaviour of \texttt{continue}, which is described
+            in section \ref{break_n_continue}.
+
+            Grammatically, the three components of a \texttt{for} loop are
+            expressions. Most commonly, \texttt{expr1} and \texttt{expr3} are
+            assignements or function calls and \texttt{expr2} is a relational
+            expressions. Any of the three parts can be ommited, although the 
+            semicolons \texttt{;} must remain. You can find a simple example
+            of a \texttt{for} usage below:
+            \begin{lstlisting}
+    u8          i;
+    ubyte[]     str = "Hello !";
+
+    for (i = 0; str[i] != '\0'; i++)
+        print("Letter position %d is %c\n", i, str[i]);
+            \end{lstlisting}
         \subsection{Loops - Do-While}
-        \subsection{Break and Continue}
+        \subsection{Break and Continue} \label{break_n_continue}
     \section{Functions and Program Structure}
         \subsection{Basics}
         \subsection{External Variables}
