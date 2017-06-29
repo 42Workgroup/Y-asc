@@ -52,8 +52,65 @@
 
 \part{Introduction}
 \part{The Y Language}
-    \section{Getting Started}
+    \section{The basics}
+        \subsection{File format}
+            All files in the Y programming language will have the \texttt{.y}
+            extension. Though this extension serve no purpose, we advise the
+            reader to stick to this rule, as is it much better for organizing files.
+        \subsection{Instructions}
+            In the Y language, one must declare an instruction with a \texttt{;}
+            at the end of it
+            \begin{lstlisting}
+    instruction;
+            \end{lstlisting}
+            One can chain instruction on the same line, regardless of line breaks
+            \begin{lstlisting}
+    instruction1; instruction2;
+            \end{lstlisting}
+            It is worth noting that the Y language does not care about line returns,
+            in whatever standards (\textbackslash n, \textbackslash r\textbackslash n, ..)
+        \subsection{Scope}
+            As many programming languages, Y use a couple of brackets \texttt{\{\}}
+            to determine scope. Scope is to be determined on special instructions,
+            like conditions, functions and namespaces.
+            \begin{lstlisting}
+    if (condition) {
+        /* If's scope */
+    }
+
+    [...]
+
+    function(ubyte[] : str) : bool {
+        /* Function's scope */
+    }
+            \end{lstlisting}
+            One can use brackets to determine an internal scope, that serve no
+            other purpose that limiting variable use
+            \begin{lstlisting}
+    {
+        u32 num = 2;
+
+        print("Num is equal to %u\n", num);
+    }
+    /* Cannot use num here */
+            \end{lstlisting}
+
+        \subsection{Comments}
+            Comments can be written in the following format
+            \begin{lstlisting}
+    /* Comment here */
+            \end{lstlisting}
+            Those are only for the developer, as it will not be compiled.
+
     \section{Types, Operators and Expressions}
+        Variables and constants are the basic data objects manipulated in a
+        program. Declarations list the variables to be used, and state what type
+        they have and perhaps what their inititial values are. Operators
+        specify what is to be done with them. Expressions combine variables and
+        constants to produce new values. The type of an object determines the set
+        of values it can have and what operations can be performed on it. These
+        building blocks are the topic of this chapter.
+
         \subsection{Declarations}
             All variables must be declared before use, although certain
             declarations can be made implicity by content. A declaration
@@ -396,7 +453,34 @@ Operators & Associativity\\
 \hline
 \end{array}$
     \section{Control Flow}
+        The control-flow of a language specify the order in which computations
+        are performed. We have already met the most common control-flow constructions
+        in earlier examples; here we will complete the set, and be more precise
+        about the ones discussed before.
         \subsection{If-Else}
+            The \texttt{if-else} statement is used to express decisions. Formally
+            the syntax is
+            \begin{lstlisting}
+    if (expression)
+        statement1
+    else
+        statement2
+            \end{lstlisting}
+            where the else part is optional. The \texttt{expression} is evaluated;
+            if it is true (that is, if \texttt{expression} has a non-zero value),
+            \texttt{statement1} is executed. If it is false, (\texttt{expression} is zero)
+            and there is an else part, \texttt{statement2} is executed instead.
+
+            Since an \texttt{if} test the numeric value of an expression, certain
+            shortcuts are possible. The most obvious is writing
+            \begin{lstlisting}
+    if (expression)
+            \end{lstlisting}
+            instead of
+            \begin{lstlisting}
+    if (expression != 0)
+            \end{lstlisting}
+
         \subsection{Else-If}
         \subsection{Loops - While}
         \subsection{Loops - For}
