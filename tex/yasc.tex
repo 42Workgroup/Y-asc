@@ -660,7 +660,18 @@ Operators & Associativity\\
             \end{lstlisting}
 
         \subsection{External Variables}
-        \subsection{Scope Rules}
+            A Y program consists of a set of external objects, wich are either
+            variables or functions. The adjective \texttt{external} is used in
+            contrast to \texttt{internal}, which descibres the arguments and
+            variables defined inside functions. External variables are defined
+            outside any function, and are thus potentially available to many
+            functions. Functions themselves are always external, because Y
+            does not allow functions to be defined in other functions. By
+            default, external variables and functions have the property that
+            all references to them by the same name, even from functions compiled
+            separately, are references to the same thing. (We usually call this
+            property \texttt{external linkage}.) To declare a global variable,
+            one must simply declare it out of any scope.
         \subsection{Namespaces} \label{namespaces}
             Namespaces are used to limit scope of functions. They must be declared
             via the keyword \texttt{def}, with brackets to delimit the scope.
@@ -788,11 +799,34 @@ Operators & Associativity\\
             If one must use the \texttt{Namespace\_two} \texttt{hello} function,
             a proper accessor must be used, as shown above.
 
-
-
         \subsection{Header Files}
         \subsection{Static Variables}
-        \subsection{Recursion}
+            One can declare a specific variable to be declared once, and won't
+            be destroyed at the end of its scope. This is done by using the
+            keyword \texttt{\_\_static}
+            \begin{lstlisting}
+    function(void) : void {
+        u8 __static     counter = 0;
+
+        print("Counter is $%d\n", counter);
+        counter = counter + 1;
+    }
+            \end{lstlisting}
+            If we are to use this function like
+            \begin{lstlisting}
+    function();
+    function();
+    function();
+            \end{lstlisting}
+            The output will be
+            \begin{lstlisting}
+    > Counter is 0
+    > Counter is 1
+    > Counter is 2
+            \end{lstlisting}
+            Take note that this variable can't be used out of its scope, like
+            a normal one. Since this variable is only declared once, it must have
+            an initialization value, like a constant.
         \subsection{Preprocessor}
     \section{Pointers and Arrays}
         \subsection{Pointers and Addresses}
