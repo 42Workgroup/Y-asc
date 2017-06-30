@@ -592,6 +592,17 @@ Operators & Associativity\\
             evaluated. If it is true, \texttt{statement} is evaluated again, and so on.
             When the expression becomes false, the loop terminates.
         \subsection{Break and Continue} \label{break_n_continue}
+            It is sometimes convenient to be able to exit from a loop other than
+            by testing at the top or bottom. The \texttt{break} statement provides
+            an early exit from \texttt{for}, \texttt{while} and \texttt{do}.
+            A \texttt{break} causes the innermost enclosing loop to be exited
+            immediately.
+
+            The \texttt{continue} statement is related to \texttt{break}: it
+            causes the next iteration of the enclosing \texttt{for}, \texttt{while} or
+            \texttt{do} loop to begin. In the \texttt{while} and \texttt{do}, this means
+            that the test part is executed immediately; in the \texttt{for}, control
+            passes to the increment step.
     \section{Functions and Program Structure}
         \subsection{Basics}
         \subsection{External Variables}
