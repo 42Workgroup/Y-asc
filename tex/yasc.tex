@@ -604,7 +604,61 @@ Operators & Associativity\\
             that the test part is executed immediately; in the \texttt{for}, control
             passes to the increment step.
     \section{Functions and Program Structure}
+        Functions break large computing tasks into smaller ones, and enable people
+        to build on what others have done instead of starting over from scratch.
+        Appropriate functions hide details of operation from parts of the program
+        that don't need to know about them, thus clarifying the whole, and easing
+        the pain of making changes.
         \subsection{Basics}
+            A function is declared like
+            \begin{lstlisting}
+                function_name(arguments) : return-type {
+                    statement;
+                }
+            \end{lstlisting}
+            A function is identified by its name. Function names are made up
+            of letters and digits; the first character
+            must be a letter. A letter is, in this context, a character inside
+            the English dictionnary, through the letters \texttt{a} to \texttt{z}.
+            All other symbols from other languages / Unicode are not supported,
+            and will throw an error upon reading. The underscore \texttt{\_}
+            count as a letter. All function must be in lowercase, as uppercase
+            names are reserved to namespaces.
+            Keywords like \texttt{if}, \texttt{else}, \texttt{struct}, etc., are
+            reserved: They cannot be used as functions names.
+
+            The \texttt{arguments} is a list of a variables passed to the function.
+            In
+            \begin{lstlisting}
+                ubyte[] : str, u32 : num
+            \end{lstlisting}
+            The first argument, \texttt{str} is an array of \texttt{ubyte}, and
+            the second one, \texttt{num}, is an unsigned integer on 32 bits.
+
+            The \texttt{return\_type} of the function is declared after the list
+            of arguments, using the character \texttt{:}. This return type
+            must be respected in the function, with the \texttt{return} keyword.
+            For example, the following function is wrong:
+            \begin{lstlisting}
+                compute_division(u32 : first, u32 : second) : u32 {
+                    [...]
+                    return "Hello !";
+                }
+            \end{lstlisting}
+            since it is returning a \texttt{string}, instead of an \texttt{u32}.
+
+            A function can take no arguments, or return nothing: in this case,
+            the type \texttt{void} must be used
+            \begin{lstlisting}
+                function_that_does_nothing(void) : void {
+                    [Nothingness...]
+                }
+            \end{lstlisting}
+            That function can be called with
+            \begin{lstlisting}
+                function_that_does_nothing();
+            \end{lstlisting}
+
         \subsection{External Variables}
         \subsection{Scope Rules}
         \subsection{Namespaces} \label{namespaces}
