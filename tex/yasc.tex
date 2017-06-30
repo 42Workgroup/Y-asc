@@ -577,6 +577,20 @@ Operators & Associativity\\
         print("Letter position %d is %c\n", i, str[i]);
             \end{lstlisting}
         \subsection{Loops - Do-While}
+            As we discussed earlier, the \texttt{while} and \texttt{for} loops
+            test the termination condition at the top. By contrast, the \texttt{do-while}
+            loop tests at the bottom \texttt{after} making each pass through the 
+            loop body; the body is always executed at least once.
+
+            The syntax of the \texttt{do} is
+            \begin{lstlisting}
+    do
+        statement;
+    while (expression);
+            \end{lstlisting}
+            The \texttt{statement} is executed, then \texttt{expression} is
+            evaluated. If it is true, \texttt{statement} is evaluated again, and so on.
+            When the expression becomes false, the loop terminates.
         \subsection{Break and Continue} \label{break_n_continue}
     \section{Functions and Program Structure}
         \subsection{Basics}
