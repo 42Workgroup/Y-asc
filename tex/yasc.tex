@@ -831,7 +831,32 @@ Operators & Associativity\\
         Y provides certain language facilities by means of a preprocessor, which
         is conceptionally a separate first step in compilation.
         \subsection{File inclusion}
+            File inclusions makes it easy to handle collections of declarations.
+            Any source line of the form
+            \begin{lstlisting}
+    #include "filename"
+            \end{lstlisting}
+            or
+            \begin{lstlisting}
+    #include <filename>
+            \end{lstlisting}
+            is replaced by the content of \texttt{filename}.
         \subsection{Macro Substitution}
+            A definition has the form
+            \begin{lstlisting}
+    #define name replacement text
+            \end{lstlisting}
+            It calls for a macro substitution of the simplest kind - subsequent
+            occurences of the token \texttt{name} will be replaced by the
+            \texttt{replacement text}. The name in a \texttt{\#define} has the
+            same form as a variable name; the replacement text is arbitrary.
+            Normally the replacement text is the rest of the line, but a long
+            definition may be continued onto several lines by placing a \textbackslash
+            (antislash) at the end of each line to be continued. The scope of a
+            name defined with \texttt{\#define} is from its point of definition to
+            the end of the source file. A definition may use previous definitions.
+            Substitutions are made only for tokens, and do not take place within
+            quoted strings.
         \subsection{Conditions}
     \section{Pointers and Arrays}
         \subsection{Pointers and Addresses}
