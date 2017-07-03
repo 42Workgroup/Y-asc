@@ -858,6 +858,15 @@ Operators & Associativity\\
             Substitutions are made only for tokens, and do not take place within
             quoted strings.
         \subsection{Conditions}
+            It is possible to control preprocessing itself with conditional
+            statements that are evaluated during preprocessing. This provides
+            a way to include code selectively, depending on the value of
+            conditions evaluated during compilation.
+
+            The \texttt{\#if} line evaluates a constant integer expression. If
+            the expression is non-zero, subsequent lines until an \texttt{\#endif}
+            or \texttt{\#elif} or \texttt{\#else} are included.
+
     \section{Pointers and Arrays}
         \subsection{Pointers and Addresses}
         \subsection{Pointers and Function Arguments}
