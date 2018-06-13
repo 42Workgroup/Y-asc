@@ -1,0 +1,29 @@
+\subsection{Scope}
+
+As many programming languages, Y use a couple of brackets \texttt{\{\}}
+to determine scope. Scope is to be determined on special instructions,
+like conditions, functions and namespaces.
+
+\begin{lstlisting}
+    if (condition) {
+        /* If's scope */
+    }
+
+    [...]
+
+    function(ubyte[] : str) : bool {
+        /* Function's scope */
+    }
+\end{lstlisting}
+
+One can use brackets to determine an internal scope, that serve no
+other purpose that limiting variable use
+
+\begin{lstlisting}
+    {
+        u32 num = 2;
+
+        print("Num is equal to %u\n", num);
+    }
+    /* Cannot use num here */
+\end{lstlisting}

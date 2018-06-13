@@ -1,0 +1,128 @@
+\subsection{Inline Constant Declarations}
+
+One can use inline constant declarations in order to simplify code
+
+\begin{lstlisting}
+    print("Hello!");
+\end{lstlisting}
+Here, the \texttt{Hello!} is a constant inline string. One can also
+use an integer constant like \texttt{1234}, which is by default an
+unsigned integer on 32 bits; therefore, the following example is wrong
+\begin{lstlisting}
+        print_int(u8 : num) : void {
+            print("%d\n", num);
+        }
+
+        [...]
+
+        main(u32 : ac, ubyte[]* : av) : u32 {
+            print_int(23);
+        }
+\end{lstlisting}
+Instead, one must use
+\begin{lstlisting}
+        print_int(u32_to_u8(23));
+\end{lstlisting}
+Which is valid by the type conversions standard of the Y language, see
+\ref{Type_conv} section for more information.
+
+In order to gain some performance at run-time, by avoiding a function call,
+one can use constants cast
+\begin{lstlisting}
+        print_int(__u8(23));
+\end{lstlisting}
+It will change the internal type of the variable at compilation time,
+acting like a cast. See the \ref{comp_cast} section for more information.
+
+The value of an integer can be specified in octal or hexadecimal
+instead of decimal. A leading \texttt{0} (zero) on an integer
+constant means octal; a leading \texttt{0x} or \texttt{0X} means
+hexadecimal.  For example, decimal 31 can be written as
+\texttt{037} in octal and \texttt{0x1f} or \texttt{0x1F} in hex.
+
+A character constant is an integer, written as one character within
+single quotes, such as \texttt{'x'}. The value of a character constant
+is the numeric value of the characters in the machine's character set.
+For example, in the ASCII character set the character constant \texttt{'0'}
+has the value \texttt{48}, which is unrelated to the numeric value \texttt{0}.
+
+Certain characters can be represented in character and string constants
+by escape sequences like \texttt{\textbackslash n} (newline); these sequences look
+like two characters, but represent only one. In addition, an arbitrary
+byte-sized (ubyte) pattern can be specified by
+\begin{lstlisting}
+        '\ooo'
+\end{lstlisting}
+Where \texttt{ooo} is one to three octal digits (0..7) or by
+\begin{lstlisting}
+        '\xhh'
+\end{lstlisting}
+where \texttt{hh} is one or more hexadecimal digits (0..9, a..f, A..F).
+The complete set of escape sequences is
+\\\\
+$\begin{array}{|l|l|}
+\hline
+Sequence & Value\\
+\hline
+\backslash a & \text{alert (bell) character} \\
+\hline
+\backslash b & \text{backspace} \\
+\hline
+\backslash f & \text{formfeed} \\
+\hline
+\backslash n & \text{newline} \\
+\hline
+\backslash r & \text{carriage return} \\
+\hline
+\backslash t & \text{horizontal tab} \\
+\hline
+\backslash v & \text{vertical tab} \\
+\hline
+\backslash \backslash & \text{backslash} \\
+\hline
+\backslash ? & \text{question mark} \\
+\hline
+\backslash ' & \text{single quote} \\
+\hline
+\backslash " & \text{double quote} \\
+\hline
+\backslash ooo & \text{octal number} \\
+\hline
+\backslash xhh & \text{hexadecimal number} \\
+\hline
+\end{array}$
+\\\\
+The character constant \texttt{'\textbackslash 0'} represents the character
+with value zero, the null character.
+
+A \texttt{constant expression} is an expression that involves only constants.
+Such expressions may be evaluated at during compilation rather than run-time,
+and accordingly may be used in any place that a constant occur, as in
+\begin{lstlisting}
+    ubyte[100 + 20]     str;
+\end{lstlisting}
+will be compiled as
+\begin{lstlisting}
+    ubyte[120]     str;
+\end{lstlisting}
+
+A string constant, or string literal, is sequence of zero or more
+characters surrounded by doubles quotes, as in
+\begin{lstlisting}
+    "I am a string"
+\end{lstlisting}
+or
+\begin{lstlisting}
+    "" /* The empty string */
+\end{lstlisting}
+The quotes are not part of the string, but serve only to delimit it. The
+same escape sequences used in character constants apply in strings;
+\textbackslash " represents the double-quote character. String constants
+can be concatenated at compile time:
+\begin{lstlisting}
+    "hello, " "world"
+\end{lstlisting}
+is equivalent to
+\begin{lstlisting}
+    "hello, world"
+\end{lstlisting}

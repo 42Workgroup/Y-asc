@@ -1,0 +1,29 @@
+\subsection{Compilation time casts} \label{comp_cast}
+
+In order to respect the 'non implicit cast' rule on constant expressions,
+one must use standards function for it:
+\begin{lstlisting}
+        print_int(u8 : num) : void {
+            print("%d\n", num);
+        }
+
+        [...]
+
+        main(u32 : ac, ubyte[]* : av) : u32 {
+            print_int(u32_to_u8(23));
+        }
+\end{lstlisting}
+Alternatively, in order to gain on performance, one can specify
+the desired type for the compiler:
+\begin{lstlisting}
+        print_int(__u8(23));
+\end{lstlisting}
+The following keywords can be used
+\\\\
+$\begin{array}{l}
+\_\_u8\\
+\_\_ubyte\\
+\_\_u16\\
+\_\_u32\\
+\end{array}$
+\\\\

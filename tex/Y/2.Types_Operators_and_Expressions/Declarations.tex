@@ -1,0 +1,26 @@
+\subsection{Declarations}
+
+All variables must be declared before use, although certain
+declarations can be made implicity by content. A declaration
+specifies a type, an optionnal flag and a name.
+
+\begin{lstlisting}
+    u32                 count, j;
+    bool __const        ret = true;
+\end{lstlisting}
+
+Variables can be distributed among declarations in any fashion; the
+list above could well be written as
+
+\begin{lstlisting}
+    u32         count;
+    u32         j;
+\end{lstlisting}
+
+A variable may also be initialized in its declaration. If the name
+is followed by an equals signs and an expression, the expression
+serves as an initializer. Constant variables must be initialized,
+see the \ref{const} section for more information.
+
+The flag between the type and the name is implemented by the language,
+and should always be in this position.
